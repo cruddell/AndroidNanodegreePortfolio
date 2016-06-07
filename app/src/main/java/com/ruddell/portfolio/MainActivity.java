@@ -1,5 +1,6 @@
 package com.ruddell.portfolio;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +11,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final boolean DEBUG_LOG = true;
 
+    private static final String PACKAGE_MOVIE_STUDIO = "com.ruddell.moviestudio";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.popularMovies:
-                Toast.makeText(this, "This button will launch the Popular Movies app project!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "This button will launch the Popular Movies app project!", Toast.LENGTH_SHORT).show();
+                launchApp(PACKAGE_MOVIE_STUDIO);
                 break;
             case R.id.stockHawk:
                 Toast.makeText(this, "This button will launch the Stock Hawk app project!", Toast.LENGTH_SHORT).show();
@@ -37,5 +41,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "This button will launch the Capstone app project!", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    private void launchApp(String packageName) {
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
+        startActivity(launchIntent);
     }
 }
